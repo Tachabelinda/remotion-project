@@ -1,0 +1,32 @@
+{
+  "name": "remotion-project",
+  "version": "1.0.0",
+  "description": "Remotion video project built with Claude Code",
+  "main": "index.js",
+  "scripts": {
+    "preview": "remotion preview src/index.ts",
+    "render": "remotion render src/index.ts USvsNigeriaReel out/video.mp4",
+    "build": "remotion render src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://local_proxy@127.0.0.1:52894/git/Tachabelinda/remotion-project"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@remotion/cli": "^4.0.431",
+    "@remotion/google-fonts": "^4.0.431",
+    "@remotion/player": "^4.0.431",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "remotion": "^4.0.431"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^5.9.3"
+  }
+}
