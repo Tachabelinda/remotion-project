@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "preview": "remotion preview src/index.ts",
-    "render": "remotion render src/index.ts USvsNigeriaReel out/video.mp4",
+    "render": "remotion render src/index.ts USvsNigeriaReel out/softhire-reel.mp4",
+    "render:tacha": "remotion render src/index.ts BuildWithTachaReel out/buildwithtacha-reel.mp4",
     "build": "remotion render src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
