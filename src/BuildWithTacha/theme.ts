@@ -1,7 +1,34 @@
+import { staticFile } from "remotion";
+import { continueRender, delayRender } from "remotion";
+
+const loadLocalFont = (family: string, src: string, weight: string, style: string) => {
+  if (typeof FontFace !== "undefined") {
+    const handle = delayRender(`Loading font ${family} ${weight} ${style}`);
+    const font = new FontFace(family, `url('${src}')`, {
+      weight,
+      style,
+    });
+    font
+      .load()
+      .then(() => {
+        document.fonts.add(font);
+        continueRender(handle);
+      })
+      .catch(() => continueRender(handle));
+  }
+};
+
+loadLocalFont("Playfair Display", staticFile("fonts/PlayfairDisplay-Italic.woff2"), "400", "italic");
+loadLocalFont("Playfair Display", staticFile("fonts/PlayfairDisplay-Bold.woff2"), "700", "normal");
+loadLocalFont("Playfair Display", staticFile("fonts/PlayfairDisplay-BoldItalic.woff2"), "700", "italic");
+loadLocalFont("DM Sans", staticFile("fonts/DMSans-Light.woff2"), "300", "normal");
+loadLocalFont("DM Sans", staticFile("fonts/DMSans-Regular.woff2"), "400", "normal");
+loadLocalFont("DM Mono", staticFile("fonts/DMMono-Regular.woff2"), "400", "normal");
+
 export const FONTS = {
-  display: "Georgia, 'Times New Roman', serif",
-  body: "'Helvetica Neue', Arial, sans-serif",
-  mono: "'Courier New', monospace",
+  display: "'Playfair Display', Georgia, 'Times New Roman', serif",
+  body: "'DM Sans', 'Helvetica Neue', Arial, sans-serif",
+  mono: "'DM Mono', 'Courier New', monospace",
 } as const;
 
 export const COLORS = {
@@ -22,13 +49,13 @@ export const COLORS = {
 export const FPS = 30;
 
 export const SCENE_DURATIONS = [
-  Math.round(3.5 * FPS),  // Scene 1: Hook
-  Math.round(3.8 * FPS),  // Scene 2: One Prompt
-  Math.round(4.2 * FPS),  // Scene 3: Counter
-  Math.round(3.5 * FPS),  // Scene 4: Skill
-  Math.round(3.5 * FPS),  // Scene 5: Prompt
-  Math.round(3.8 * FPS),  // Scene 6: Result
-  Math.round(3.5 * FPS),  // Scene 7: Exit
+  Math.round(3.5 * FPS),
+  Math.round(3.8 * FPS),
+  Math.round(4.2 * FPS),
+  Math.round(3.5 * FPS),
+  Math.round(3.5 * FPS),
+  Math.round(3.8 * FPS),
+  Math.round(3.5 * FPS),
 ] as const;
 
 export const TOTAL_FRAMES = SCENE_DURATIONS.reduce((a, b) => a + b, 0);

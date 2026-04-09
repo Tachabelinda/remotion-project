@@ -14,6 +14,9 @@ import { FilmGrain } from "../effects/FilmGrain";
 import { ScanLines } from "../effects/ScanLines";
 import { Vignette } from "../effects/Vignette";
 import { KineticWords } from "../effects/KineticWords";
+import { LensFlare } from "../effects/LensFlare";
+import { FlashTransition } from "../effects/FlashTransition";
+import { OrbitalRings } from "../effects/OrbitalRings";
 
 const SKILL_ITEMS = [
   { label: "Skill", value: "Remotion Video Generation" },
@@ -51,12 +54,19 @@ export const Scene4Skill: React.FC = () => {
         padding: "0 40px 0 60px",
       }}
     >
-      <Particles count={16} />
-      <Streaks count={3} />
-      <ChromaticAberration intensity={0.7} />
-      <FilmGrain />
-      <ScanLines />
-      <Vignette />
+      <FlashTransition duration={10} intensity={0.4} />
+      <Particles count={38} />
+      <Streaks count={6} />
+      <ChromaticAberration intensity={frame < 14 ? 4.5 : 1.5} />
+      <LensFlare x="70%" y="30%" delay={6} size={450} />
+      <LensFlare x="15%" y="65%" delay={22} size={280} />
+      <FilmGrain opacity={0.07} />
+      <ScanLines opacity={0.05} speed={0.85} />
+      <Vignette intensity={0.75} />
+      <OrbitalRings rings={[
+        { size: 600, speed: 0.15, opacity: 0.08 },
+        { size: 450, speed: 0.3, opacity: 0.06 },
+      ]} />
 
       {/* Accent bar */}
       <div

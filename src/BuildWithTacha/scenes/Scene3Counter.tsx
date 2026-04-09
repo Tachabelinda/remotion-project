@@ -15,6 +15,7 @@ import { FilmGrain } from "../effects/FilmGrain";
 import { ScanLines } from "../effects/ScanLines";
 import { Vignette } from "../effects/Vignette";
 import { LensFlare } from "../effects/LensFlare";
+import { FlashTransition } from "../effects/FlashTransition";
 
 const ITEMS = [
   "30 days of content",
@@ -83,13 +84,15 @@ export const Scene3Counter: React.FC = () => {
         }}
       />
 
-      <Particles count={30} />
-      <Streaks count={5} />
-      <ChromaticAberration intensity={0.6} />
-      <LensFlare x="50%" y="38%" delay={4} size={600} />
-      <FilmGrain />
-      <ScanLines />
-      <Vignette />
+      <FlashTransition duration={10} intensity={0.45} />
+      <Particles count={45} />
+      <Streaks count={7} />
+      <ChromaticAberration intensity={frame < 12 ? 5 : 1.5} />
+      <LensFlare x="50%" y="38%" delay={4} size={700} />
+      <LensFlare x="25%" y="55%" delay={16} size={300} />
+      <FilmGrain opacity={0.07} />
+      <ScanLines opacity={0.05} speed={0.9} />
+      <Vignette intensity={0.8} />
 
       <OrbitalRings
         rings={[

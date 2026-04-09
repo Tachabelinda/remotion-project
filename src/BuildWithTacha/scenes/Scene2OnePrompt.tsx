@@ -14,6 +14,8 @@ import { FilmGrain } from "../effects/FilmGrain";
 import { ScanLines } from "../effects/ScanLines";
 import { Vignette } from "../effects/Vignette";
 import { KineticWords } from "../effects/KineticWords";
+import { LensFlare } from "../effects/LensFlare";
+import { FlashTransition } from "../effects/FlashTransition";
 
 export const Scene2OnePrompt: React.FC = () => {
   const frame = useCurrentFrame();
@@ -57,12 +59,15 @@ export const Scene2OnePrompt: React.FC = () => {
         padding: "0 40px 0 60px",
       }}
     >
-      <Particles count={16} />
-      <Streaks count={3} />
-      <ChromaticAberration intensity={0.8} />
-      <FilmGrain />
-      <ScanLines />
-      <Vignette />
+      <FlashTransition duration={10} intensity={0.4} />
+      <Particles count={35} />
+      <Streaks count={6} />
+      <ChromaticAberration intensity={frame < 15 ? 4 : 1.5} />
+      <LensFlare x="20%" y="35%" delay={8} size={400} />
+      <LensFlare x="80%" y="60%" delay={20} size={250} />
+      <FilmGrain opacity={0.07} />
+      <ScanLines opacity={0.05} speed={0.8} />
+      <Vignette intensity={0.75} />
 
       {/* Accent bar */}
       <div

@@ -8,12 +8,15 @@ import {
 } from "remotion";
 import { FONTS, COLORS } from "../theme";
 import { Particles } from "../effects/Particles";
+import { Streaks } from "../effects/Streaks";
 import { ChromaticAberration } from "../effects/ChromaticAberration";
 import { FilmGrain } from "../effects/FilmGrain";
 import { ScanLines } from "../effects/ScanLines";
 import { Vignette } from "../effects/Vignette";
 import { KineticWords } from "../effects/KineticWords";
 import { AudioWaveform } from "../effects/AudioWaveform";
+import { LensFlare } from "../effects/LensFlare";
+import { FlashTransition } from "../effects/FlashTransition";
 
 export const Scene5Prompt: React.FC = () => {
   const frame = useCurrentFrame();
@@ -57,11 +60,14 @@ export const Scene5Prompt: React.FC = () => {
         padding: "0 40px 0 48px",
       }}
     >
-      <Particles count={14} />
-      <ChromaticAberration intensity={0.5} />
-      <FilmGrain />
-      <ScanLines />
-      <Vignette />
+      <FlashTransition duration={10} intensity={0.35} />
+      <Particles count={32} />
+      <Streaks count={5} />
+      <ChromaticAberration intensity={frame < 12 ? 3.5 : 1.2} />
+      <LensFlare x="60%" y="25%" delay={10} size={380} />
+      <FilmGrain opacity={0.07} />
+      <ScanLines opacity={0.05} speed={0.7} />
+      <Vignette intensity={0.7} />
 
       <div style={{ position: "relative", zIndex: 10 }}>
         <div

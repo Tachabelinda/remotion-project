@@ -69,13 +69,14 @@ export const Scene1Hook: React.FC = () => {
         }}
       />
 
-      <Particles count={26} />
-      <Streaks count={5} />
-      <ChromaticAberration intensity={frame < 20 ? 3 : 1} />
-      <LensFlare x="50%" y="45%" delay={6} size={500} />
-      <FilmGrain opacity={0.05} />
-      <ScanLines opacity={0.03} />
-      <Vignette intensity={0.75} />
+      <Particles count={40} />
+      <Streaks count={7} />
+      <ChromaticAberration intensity={frame < 20 ? 5 : 1.5} />
+      <LensFlare x="50%" y="45%" delay={6} size={700} />
+      <LensFlare x="30%" y="30%" delay={15} size={300} />
+      <FilmGrain opacity={0.07} />
+      <ScanLines opacity={0.05} speed={0.8} />
+      <Vignette intensity={0.8} />
 
       <OrbitalRings />
 

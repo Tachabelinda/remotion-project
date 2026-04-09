@@ -28,11 +28,14 @@ export const BuildWithTachaReel: React.FC = () => {
   const frame = useCurrentFrame();
 
   let offset = 0;
-  const crossfadeDuration = 10;
+  const crossfadeDuration = 12;
+
+  // Global pulse for gold accent lines
+  const goldPulse = 0.7 + Math.sin(frame * 0.08) * 0.3;
 
   return (
     <AbsoluteFill style={{ backgroundColor: COLORS.bg }}>
-      {/* Top gold accent line */}
+      {/* Top gold accent line with pulse */}
       <div
         style={{
           position: "absolute",
@@ -47,11 +50,12 @@ export const BuildWithTachaReel: React.FC = () => {
           style={{
             height: 5,
             background: `linear-gradient(90deg, ${COLORS.goldDark}, ${COLORS.goldBright}, ${COLORS.goldDark})`,
+            boxShadow: `0 2px 20px rgba(201,168,76,${0.3 * goldPulse})`,
           }}
         />
       </div>
 
-      {/* Bottom gold accent line */}
+      {/* Bottom gold accent line with pulse */}
       <div
         style={{
           position: "absolute",
@@ -65,6 +69,7 @@ export const BuildWithTachaReel: React.FC = () => {
           style={{
             height: 5,
             background: `linear-gradient(90deg, ${COLORS.goldDark}, ${COLORS.goldBright}, ${COLORS.goldDark})`,
+            boxShadow: `0 -2px 20px rgba(201,168,76,${0.3 * goldPulse})`,
           }}
         />
         <div style={{ height: 10, background: "#1A1008" }} />
@@ -93,6 +98,14 @@ export const BuildWithTachaReel: React.FC = () => {
 
         const sceneOpacity = Math.min(fadeIn, fadeOut);
 
+        // Subtle zoom-in effect during each scene
+        const sceneScale = interpolate(
+          frame,
+          [sceneStart, sceneStart + sceneDuration],
+          [1.0, 1.03],
+          { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+        );
+
         offset += sceneDuration;
 
         return (
@@ -107,6 +120,7 @@ export const BuildWithTachaReel: React.FC = () => {
                 paddingTop: 48,
                 paddingBottom: 32,
                 overflow: "hidden",
+                transform: `scale(${sceneScale})`,
               }}
             >
               <SceneComp />

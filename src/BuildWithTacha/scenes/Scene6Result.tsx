@@ -16,6 +16,7 @@ import { ScanLines } from "../effects/ScanLines";
 import { Vignette } from "../effects/Vignette";
 import { LensFlare } from "../effects/LensFlare";
 import { KineticWords } from "../effects/KineticWords";
+import { FlashTransition } from "../effects/FlashTransition";
 
 const RESULTS = [
   { stat: "7", label: "Scenes" },
@@ -59,13 +60,16 @@ export const Scene6Result: React.FC = () => {
         }}
       />
 
-      <Particles count={20} />
-      <Streaks count={5} />
-      <ChromaticAberration intensity={0.7} />
-      <LensFlare x="50%" y="42%" delay={6} size={450} />
-      <FilmGrain />
-      <ScanLines />
-      <Vignette />
+      <FlashTransition duration={10} intensity={0.5} />
+      <Particles count={42} />
+      <Streaks count={7} />
+      <ChromaticAberration intensity={frame < 14 ? 5 : 1.5} />
+      <LensFlare x="50%" y="42%" delay={4} size={650} />
+      <LensFlare x="30%" y="25%" delay={14} size={320} />
+      <LensFlare x="75%" y="65%" delay={24} size={250} />
+      <FilmGrain opacity={0.07} />
+      <ScanLines opacity={0.05} speed={0.9} />
+      <Vignette intensity={0.8} />
 
       <OrbitalRings
         rings={[

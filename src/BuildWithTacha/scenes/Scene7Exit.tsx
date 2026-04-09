@@ -1,8 +1,10 @@
 import React from "react";
 import {
   AbsoluteFill,
+  Img,
   interpolate,
   spring,
+  staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
@@ -13,6 +15,7 @@ import { ChromaticAberration } from "../effects/ChromaticAberration";
 import { OrbitalRings } from "../effects/OrbitalRings";
 import { FilmGrain } from "../effects/FilmGrain";
 import { ScanLines } from "../effects/ScanLines";
+import { LensFlare } from "../effects/LensFlare";
 import { Vignette } from "../effects/Vignette";
 import { FlashTransition } from "../effects/FlashTransition";
 import { KineticWords } from "../effects/KineticWords";
@@ -64,12 +67,14 @@ export const Scene7Exit: React.FC = () => {
         }}
       />
 
-      <Particles count={34} />
-      <Streaks count={6} />
-      <ChromaticAberration intensity={frame < 12 ? 3 : 0.8} />
-      <FilmGrain opacity={0.04} />
-      <ScanLines />
-      <Vignette intensity={0.65} />
+      <Particles count={50} />
+      <Streaks count={8} />
+      <ChromaticAberration intensity={frame < 12 ? 6 : 1.8} />
+      <LensFlare x="50%" y="35%" delay={5} size={800} />
+      <LensFlare x="30%" y="55%" delay={18} size={350} />
+      <FilmGrain opacity={0.07} />
+      <ScanLines opacity={0.06} speed={0.8} />
+      <Vignette intensity={0.8} />
 
       <OrbitalRings
         rings={[
@@ -90,42 +95,29 @@ export const Scene7Exit: React.FC = () => {
           textAlign: "center",
         }}
       >
-        {/* Profile photo placeholder */}
+        {/* Profile photo */}
         <div
           style={{
-            width: 200,
-            height: 200,
+            width: 220,
+            height: 220,
             borderRadius: "50%",
-            padding: 6,
+            padding: 5,
             marginBottom: 24,
             background: `linear-gradient(135deg, ${COLORS.goldDark}, ${COLORS.goldBright} 40%, ${COLORS.goldDark} 70%, #fff8e8 100%)`,
-            boxShadow: `0 0 60px rgba(184,150,78,0.45), 0 0 120px rgba(184,150,78,0.15)`,
+            boxShadow: `0 0 80px rgba(184,150,78,0.55), 0 0 160px rgba(184,150,78,0.2), 0 0 240px rgba(184,150,78,0.1)`,
             transform: `scale(${photoSc})`,
             opacity: photoSc,
           }}
         >
-          <div
+          <Img
+            src={staticFile("tacha-profile.png")}
             style={{
               width: "100%",
               height: "100%",
               borderRadius: "50%",
-              background: `linear-gradient(135deg, ${COLORS.bg}, #1a1208)`,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              objectFit: "cover",
             }}
-          >
-            <div
-              style={{
-                fontFamily: FONTS.display,
-                fontSize: 72,
-                color: COLORS.gold,
-                fontStyle: "italic",
-              }}
-            >
-              T
-            </div>
-          </div>
+          />
         </div>
 
         <div
