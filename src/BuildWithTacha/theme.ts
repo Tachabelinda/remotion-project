@@ -1,27 +1,7 @@
-import { loadFont as loadPlayfair } from "@remotion/google-fonts/PlayfairDisplay";
-import { loadFont as loadDMSans } from "@remotion/google-fonts/DMSans";
-import { loadFont as loadDMMono } from "@remotion/google-fonts/DMMono";
-
-loadPlayfair("normal", { weights: ["700"], subsets: ["latin"] });
-const { fontFamily: playfairItalicFamily } = loadPlayfair("italic", {
-  weights: ["400", "700"],
-  subsets: ["latin"],
-});
-
-const { fontFamily: dmSansFamily } = loadDMSans("normal", {
-  weights: ["300", "400"],
-  subsets: ["latin"],
-});
-
-const { fontFamily: dmMonoFamily } = loadDMMono("normal", {
-  weights: ["400"],
-  subsets: ["latin"],
-});
-
 export const FONTS = {
-  display: playfairItalicFamily,
-  body: dmSansFamily,
-  mono: dmMonoFamily,
+  display: "Georgia, 'Times New Roman', serif",
+  body: "'Helvetica Neue', Arial, sans-serif",
+  mono: "'Courier New', monospace",
 } as const;
 
 export const COLORS = {
